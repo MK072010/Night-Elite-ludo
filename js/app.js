@@ -1,5 +1,5 @@
 /* Night Elite Ludo frontend. Demo adapter (localStorage) sits behind `API`; swap its methods for fetch('/api/...') calls. */
-const CFG={DEMO_WALLET:true,ENABLE_REAL_MONEY:false,ENABLE_CASHFREE:false,ENABLE_KYC:false,FEE:.025,NOTICE:'Demo mode: sandbox coins only. No real money is used.',WA:'https://wa.me/918302402126',OTP_COOLDOWN:30,OTP_MAX:5,MIN_STAKE:50};
+const CFG={DEMO_WALLET:true,ENABLE_REAL_MONEY:false,ENABLE_CASHFREE:false,ENABLE_KYC:false,FEE:.025,NOTICE:'Demo mode: sandbox coins only. No real money is used.',WA:'https://wa.me/919571030383',OTP_COOLDOWN:30,OTP_MAX:5,MIN_STAKE:50};
 const $=(s,r=document)=>r.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>'₹'+Number(n).toFixed(2),KEY='fb_demo_v1';
 const BOTS=['Kartik tiwari','Gujjar ji','TurboWin','PowerDice','LuckyChamp','Kingkhan','NightHawk'];
