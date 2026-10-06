@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Admin Login — Night Elite Ludo</title><link rel="icon" href="assets/mark.png"><link rel="stylesheet" href="css/admin.css"></head>
+<body><div class="lg"><div class="card"><img src="assets/logo-h.png" alt="Night Elite Ludo"><h2 style="margin:0 0 4px">Admin sign in</h2><p style="margin:0 0 14px;color:var(--muted)">Authorised staff only.</p>
+<div id="al" role="alert"></div>
+<form class="fm" id="f" novalidate><label>Email<input type="email" id="em" autocomplete="username" required></label><label>Password<input type="password" id="pw" autocomplete="current-password" required></label>
+<label style="display:flex;flex-direction:row;align-items:center;gap:8px;font-weight:500"><input type="checkbox" id="rm"> Remember this session</label>
+<button class="btn p" id="go" style="justify-content:center">Sign in</button><button type="button" class="btn" id="fg" style="border:0;justify-self:center;color:var(--primary-dark)">Forgot password?</button></form>
+<div class="al in" style="margin-top:14px">🔒 Sessions are verified by the server. Roles and permissions are never trusted from this browser. Do not share your credentials.</div>
+<p class="hint" id="pv" style="text-align:center;margin:10px 0 0"></p></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="../js/config.js"></script><script src="js/ui.js"></script><script src="js/state.js"></script><script src="js/auth.js"></script><script src="js/login.js"></script></body></html>
