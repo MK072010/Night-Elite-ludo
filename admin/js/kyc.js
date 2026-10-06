@@ -1,0 +1,7 @@
+Pages.data('kyc',{res:'kyc',title:'KYC',mod:'kyc',sub:'Documents are viewed via short-lived signed URLs. Raw Aadhaar/card data is never stored in the frontend.',
+ tabs:[{k:'all',label:'All'},{k:'pending',label:'Pending'},{k:'approved',label:'Approved'},{k:'rejected',label:'Rejected'}],
+ cols:[{k:'user',l:'User'},{k:'id',l:'KYC ID'},{k:'status',l:'Status',b:1},{k:'submitted',l:'Submitted'},{k:'reviewed',l:'Reviewed'},{k:'reviewer',l:'Reviewer'}],
+ detail:r=>{const n=document.createElement('div');n.innerHTML=UI.kv({User:r.user,'KYC ID':r.id,Status:UI.html(UI.badge(r.status)),Submitted:r.submitted,Reviewed:r.reviewed,Reviewer:r.reviewer})+'<h4>Submitted documents</h4><div class="docs"><div>ID document<br><small>Loaded on demand (signed URL)</small></div><div>Selfie<br><small>Loaded on demand (signed URL)</small></div></div><h4>Review notes</h4>';
+  const f=UI.form([{k:'note',label:'Notes',type:'textarea',hint:'Required when rejecting.'}]);n.appendChild(f);
+  const run=(n2,ap)=>async()=>{const note=f.values().note.trim();if(!ap&&!note){UI.toast('Add a note to reject.','er');return false}if(!await UI.confirm({title:ap?'Approve KYC':'Reject KYC',msg:(ap?'Approve ':'Reject ')+r.id+'?',danger:!ap}))return false;await Api.action(n2,{id:r.id,note})};
+  UI.modal({title:'KYC '+r.id,drawer:true,body:n,actions:[{label:'Close',keep:false},{label:'Reject',cls:'d',run:run('kyc.reject',0)},{label:'Approve',cls:'p',run:run('kyc.approve',1)}].filter(a=>a.label==='Close'||Permissions.can('kyc',a.label==='Reject'?'reject':'approve'))})}});

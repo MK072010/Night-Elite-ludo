@@ -1,0 +1,5 @@
+Pages.data('notifications',{res:'notifications',title:'Notifications',mod:'notifications',sub:'User-targeted and broadcast notifications (sent by the backend).',
+ tabs:[{k:'all',label:'All'},{k:'unread',label:'Unread'},{k:'read',label:'Read'},{k:'system',label:'System',field:'type'}],
+ create:{label:'+ Send notification',open:()=>{const f=UI.form([{k:'title',label:'Title'},{k:'message',label:'Message',type:'textarea',max:500},{k:'target',label:'Target',type:'select',opts:['Broadcast (all users)','Specific user']},{k:'user',label:'User ID (if specific)'}]);UI.modal({title:'Send notification',body:f,actions:[{label:'Cancel'},{label:'Send',cls:'p',run:async()=>{const v=f.values();if(!v.title.trim()){UI.toast('Title required','er');return false}await Api.action('notification.send',v)}}]})}},
+ cols:[{k:'title',l:'Title'},{k:'type',l:'Type',b:1},{k:'target',l:'Target'},{k:'status',l:'Status',b:1},{k:'created',l:'Created'},{k:'sent',l:'Sent'}],
+ detail:r=>UI.modal({title:r.title,drawer:true,body:UI.kv(r)})});

@@ -1,0 +1,3 @@
+Pages.add('dashboard',{title:'Dashboard',mod:'dashboard',async render(root){root.innerHTML=`<div class="ph"><div><h2>Dashboard</h2><p>Platform overview${State.preview?' · placeholder values (preview)':''}</p></div><button class="btn" id="rf">Refresh</button></div><div id="d">${UI.skeleton(8)}</div>`;
+ const load=async()=>{const d=root.querySelector('#d');d.innerHTML=UI.skeleton(8);try{const s=await Api.stats();d.innerHTML=Object.entries(s).map(([g,a])=>`<div class="sec">${UI.esc(g)}</div><div class="grid ${a.length==3?'g3':'g4'}">${a.map(x=>UI.stat(x[0],x[1])).join('')}</div>`).join('')}catch(e){d.innerHTML='';d.appendChild(UI.errorBox(e.message,load))}};
+ root.querySelector('#rf').onclick=load;load()}});

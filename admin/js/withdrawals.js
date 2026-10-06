@@ -1,0 +1,6 @@
+Pages.data('withdrawals',{res:'withdrawals',title:'Withdrawals',mod:'withdrawals',sub:'Processing is performed by the backend only. Source-bank account management will live in a separate, permission-protected area.',dates:true,
+ tabs:[{k:'pending',label:'Pending'},{k:'processing',label:'Processing'},{k:'completed',label:'Completed'},{k:'rejected',label:'Rejected'}],
+ cols:[{k:'id',l:'Withdrawal ID'},{k:'user',l:'User'},{k:'amount',l:'Amount'},{k:'method',l:'Method'},{k:'status',l:'Status',b:1},{k:'requested',l:'Requested'},{k:'updated',l:'Updated'}],
+ detail:r=>{const n=document.createElement('div');n.innerHTML=UI.kv({User:r.user,Amount:r.amount,Method:r.method+' (details masked)',Requested:r.requested,Status:UI.html(UI.badge(r.status))});const f=UI.form([{k:'note',label:'Admin notes',type:'textarea'}]);n.appendChild(f);
+  const act=(l,nm,cls,p)=>({label:l,cls,run:async()=>{if(!await UI.confirm({title:l,msg:l+' withdrawal '+r.id+'?',danger:cls==='d'}))return false;await Api.action(nm,{id:r.id,note:f.values().note})}});
+  UI.modal({title:'Withdrawal '+r.id,drawer:true,body:n,actions:[{label:'Close'},...(Permissions.can('withdrawals','reject')?[act('Reject','withdrawal.reject','d')]:[]),...(Permissions.can('withdrawals','approve')?[act('Approve','withdrawal.approve','p')]:[])]})}});

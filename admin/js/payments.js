@@ -1,0 +1,4 @@
+Pages.data('payments',{res:'payments',title:'Payments',mod:'payments',sub:'Status is set only by verified gateway webhooks on the backend.',dates:true,
+ tabs:[{k:'all',label:'All'},{k:'pending',label:'Pending'},{k:'success',label:'Success'},{k:'failed',label:'Failed'},{k:'expired',label:'Expired'}],
+ cols:[{k:'id',l:'Payment ID'},{k:'user',l:'User'},{k:'amount',l:'Amount'},{k:'order',l:'Order ID'},{k:'status',l:'Payment Status',b:1},{k:'created',l:'Created'},{k:'updated',l:'Updated'}],
+ detail:r=>UI.modal({title:'Payment '+r.id,drawer:true,body:UI.kv({User:r.user,'Order ID':r.order,'Payment ID':r.id,Amount:r.amount,Status:UI.html(UI.badge(r.status)),'Gateway reference':'—','Created':r.created,'Updated':r.updated})+'<p class="hint">Read-only. Marking a payment successful is not possible from the admin UI.</p>'})});
